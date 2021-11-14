@@ -13,8 +13,6 @@ int main()
 	std::cout << "Enter n "; std::cin >> n;
 
 	int* arr = new int[n];
-	int* even = new int[s];
-	int* odd = new int[k];
 
 	FillRand(arr, n);
 	Print(arr, n);
@@ -22,7 +20,8 @@ int main()
 	std::cout << "s = " << s << std::endl;
 	k = n - s;
 	std::cout << "k = " << k;
-
+	int* even = new int[s];
+	int* odd = new int[k];
 
 	delete[] arr;
 	delete[] even;
