@@ -22,14 +22,14 @@ int main()
 
 	do
 	{
-		std::cout << "Enter SIZEOF PARENT ARRAYS =  "; std::cin >> n;
+		std::cout << "Enter LENGTH PARENT ARRAYS =  "; std::cin >> n;
 		std::cout << "Enter srand "; std::cin >> r;
 		srand(r);
 		int* arr = new int[n];
 		FillRand(arr, n);
 		even_odd_length(arr, n, &s, &k);	
-		std::cout << "SIZEOF EVEN ARRAYS = " << s << std::endl;		
-		std::cout << "SIZEOF ODD ARRAYS  = " << k << std::endl;
+		std::cout << "LENGTH EVEN ARRAYS = " << s << std::endl;		
+		std::cout << "LENGTH ODD ARRAYS  = " << k << std::endl;
 		int* even = new int[s];
 		int* odd = new int[k];
 		Sort(arr, even, odd, n, s, k);
