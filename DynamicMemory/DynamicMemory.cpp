@@ -4,9 +4,9 @@
 
 void FillRand(int arr[], const int n);
 void Print(int* arr, const int n);
-void Push_back(int* arr, int* push, const int n, const int s, int* element);
-void Push_front(int* arr, int* arr_1, const int n);
-void Insert (int* arr, int* arr_1, const int n);
+void Push_back(int* arr, int* arr_1, const int n, const int s, int* element);
+void Push_front(int* arr, int* arr_1, const int n, const int s, int* element);
+void Insert (int* arr, int* arr_1, const int n, const int s, int* namber, int* element);
 void Pop_back(int* arr, int* arr_1, const int n);
 void Pop_front(int* arr, int* arr_1, const int n);
 void Erase(int* arr, int* arr_1, const int n);
@@ -19,7 +19,8 @@ int main()
 	SetConsoleDisplayMode(hConsole, CONSOLE_FULLSCREEN_MODE, &coord);
 
 	int n;
-	int element = 888;	
+	int element = 888;
+	int namber;
 	int r;
 	char e;
 
@@ -37,7 +38,14 @@ int main()
 		std::cout << "PARENT ARRAY" << std::endl;
 		Print(arr, n);
 		Push_back(arr, push, n, s, &element);		
-		std::cout << "Push_back array" << std::endl;
+		std::cout << "Push_back ARRAY" << std::endl;
+		Print(push, s);
+		Push_front(arr, push, n, s, &element);
+		std::cout << "Push_front ARRAY" << std::endl;
+		Print(push, s);
+		std::cout << "Enter the number of the inserted element "; std::cin >> namber; std::cout << "\n";
+		Insert(arr, push, n, s, &namber, &element);
+		std::cout << "Insert  ARRAY" << std::endl;
 		Print(push, s);
 		delete[] arr;
 		delete[] push;
@@ -64,22 +72,34 @@ void Print(int* arr, const int n)
 	std::cout << std::endl;	
 	
 }
-void Push_back(int* arr, int* push, const int n, const int s, int* element)
+void Push_back(int* arr, int* arr_1, const int n, const int s, int* element)
 {
 	for (int i = 0; i < s; i++)
 	{
-		*(push + i) = *(arr + i);
+		*(arr_1 + i) = *(arr + i);
 	}
-	*(push + s - 1) = *element;
-	
+	*(arr_1 + s - 1) = *element;	
 }
-void Push_front(int* arr, int* arr_1, int* n)
+void Push_front(int* arr, int* arr_1, const int n, const int s, int* element)
 {
-
+	for (int i = 1; i < s; i++)
+	{
+		*(arr_1 + i) = *(arr + i - 1);
+	}
+	*(arr_1) = *element;
 }
-void Insert(int* arr, int* arr_1, const int n)
+void Insert(int* arr, int* arr_1, const int n, const int s, int* namber, int* element)
 {
+	for (int i = 0; i < *namber -1; i++)
+	{
+		*(arr_1 + i) = *(arr + i);
+	}
+		*(arr_1 + *namber) = *element;
 
+	for (int i = *namber +1; i < s; i++)
+	{
+		*(arr_1 + i) = *(arr + i - 1);
+	}
 }
 void Pop_back(int* arr, int* arr_1, const int n)
 {
