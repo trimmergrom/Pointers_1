@@ -7,7 +7,6 @@ int even_odd_length(int* arr, const int n, int* s, int* k);
 void Sort(int* arr, int* even, int* odd, const int n, const int s, const int k);
 void Print(int* arr, int* even, int* odd, const int n, const int s, const int k);
 
-
 int main()
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -22,14 +21,14 @@ int main()
 
 	do
 	{
-		std::cout << "Enter LENGTH PARENT ARRAYS =  "; std::cin >> n;
+		std::cout << "Enter SIZE of PARENT ARRAYS =  "; std::cin >> n;
 		std::cout << "Enter srand "; std::cin >> r;
 		srand(r);
 		int* arr = new int[n];
 		FillRand(arr, n);
 		even_odd_length(arr, n, &s, &k);	
-		std::cout << "LENGTH EVEN ARRAYS = " << s << std::endl;		
-		std::cout << "LENGTH ODD ARRAYS  = " << k << std::endl;
+		std::cout << "MIN SIZE of EVEN ARRAYS = " << s << std::endl;		
+		std::cout << "MIN SIZE of ODD ARRAYS  = " << k << std::endl;
 		int* even = new int[s];
 		int* odd = new int[k];
 		Sort(arr, even, odd, n, s, k);

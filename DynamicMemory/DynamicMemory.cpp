@@ -7,10 +7,9 @@ void Print(int* arr, const int n);
 void Push_back(int* arr, int* arr_1, const int n, const int s, int* element);
 void Push_front(int* arr, int* arr_1, const int n, const int s, int* element);
 void Insert (int* arr, int* arr_1, const int n, const int s, int* namber, int* element);
-void Pop_back(int* arr, int* arr_1, const int n);
-void Pop_front(int* arr, int* arr_1, const int n);
-void Erase(int* arr, int* arr_1, const int n);
-
+void Pop_back(int* arr, int* arr_1, const int n, const int k);
+void Pop_front(int* arr, int* arr_1, const int n, const int k);
+void Erase(int* arr, int* arr_1, const int n, const int k, int* namber);
 
 int main()
 {
@@ -61,7 +60,6 @@ void FillRand(int arr[], const int n)
 		*(arr + i) = rand() % 100;
 	}
 }
-
 void Print(int* arr, const int n)
 {
 	for (int i = 0; i < n; i++)
@@ -90,7 +88,7 @@ void Push_front(int* arr, int* arr_1, const int n, const int s, int* element)
 }
 void Insert(int* arr, int* arr_1, const int n, const int s, int* namber, int* element)
 {
-	for (int i = 0; i < *namber -1; i++)
+	for (int i = 0; i < *namber; i++)
 	{
 		*(arr_1 + i) = *(arr + i);
 	}
@@ -101,15 +99,15 @@ void Insert(int* arr, int* arr_1, const int n, const int s, int* namber, int* el
 		*(arr_1 + i) = *(arr + i - 1);
 	}
 }
-void Pop_back(int* arr, int* arr_1, const int n)
+void Pop_back(int* arr, int* arr_1, const int n, const int k)
 {
 
 }
-void Pop_front(int* arr, int* arr_1, const int n)
+void Pop_front(int* arr, int* arr_1, const int n, const int k)
 {
 
 }
-void Erase(int* arr, int* arr_1, const int n)
+void Erase(int* arr, int* arr_1, const int n, const int k, int* namber)
 {
 
 }
