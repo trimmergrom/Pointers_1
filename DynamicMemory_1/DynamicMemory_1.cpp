@@ -2,21 +2,24 @@
 #include <Windows.h>
 #include <conio.h>
 
+//#define DYNAMIC_MEMORY_1
+#define DYNAMIC_MEMORY_2
+
 void FillRand(int* arr, const int arr_length);
 void Print(int* arr, const int arr_length);
 int* Push_back(int* arr, int &arr_length,  int* element);
 int* Push_front(int* arr, int &arr_length, int* element);
 int* Insert(int* arr,  int &arr_length,  int* namber, int* element);
-void Pop_back(int* arr, int &arr_length);
-void Pop_front(int* arr, int &arr_length);
-void Erase(int* arr, int& arr_length, int* namber);
+int* Pop_back(int* arr, int &arr_length);
+int* Pop_front(int* arr, int &arr_length);
+int* Erase(int* arr, int& arr_length, int* namber);
 
 int main()
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD coord;
 	SetConsoleDisplayMode(hConsole, CONSOLE_FULLSCREEN_MODE, &coord);
-
+#ifdef DYNAMIC_MEMORY_1
 	int n;
 	int element;
 	int namber;
@@ -50,21 +53,28 @@ int main()
 		std::cout << "Insert  ARRAY" << std::endl;
 		Print(arr, n); std::cout << "\n\n";
 
-		/*Pop_back(arr, pop, n, k);
+		arr = Pop_back(arr, n);
 		std::cout << "Pop_back ARRAY" << std::endl;
-		Print(pop, k); std::cout << "\n\n";
-		Pop_front(arr, pop, n, k);
+		Print(arr, n); std::cout << "\n\n";
+
+		arr = Pop_front(arr, n);
 		std::cout << "Pop_front ARRAY" << std::endl;
-		Print(pop, k); std::cout << "\n\n";
+		Print(arr, n); std::cout << "\n\n";
+
 		std::cout << "Enter the number of the erased element "; std::cin >> namber; std::cout << "\n";
-		Erase(arr, pop, n, k, &namber);
+		arr = Erase(arr, n, &namber);
 		std::cout << "Erase  ARRAY" << std::endl;
-		Print(pop, k); std::cout << "\n\n";*/
+		Print(arr, n); std::cout << "\n\n";
 		delete[] arr;
 		
 		std::cout << " To exit the program, press ESCAPE, to continue work, press any key." << std::endl;
 		e = _getch();
 	} while (e != 27);
+	#endif // DYNAMIC_MEMORY_1
+#ifdef DYNAMIC_MEMORY_2
+
+#endif // DYNAMIC_MEMORY_2
+
 }
 void FillRand(int* arr, const int arr_length)
 {
@@ -82,7 +92,7 @@ void Print(int* arr, const int arr_length)
 }
 int* Push_back(int* arr, int &arr_length, int* element)
 {
-	int* buffer = new int[arr_length +1];
+	int* buffer = new int[arr_length + 1];
 	for (int i = 0; i < arr_length; i++) buffer[i] = arr[i];
 	delete[] arr;
 	buffer[arr_length] = *element;	
@@ -106,29 +116,25 @@ int* Insert(int* arr,  int &arr_length,  int* namber, int* element)
 	buffer[*namber] = *element;
 	return buffer;
 }
-/*void Pop_back(int* arr, int &arr_length)
+int* Pop_back(int* arr, int &arr_length)
 {
-	for (int i = 0; i < arr_1_length; i++)
-	{
-		*(arr_1 + i) = *(arr + i);
-	}
+	int* buffer = new int[--arr_length];
+	for (int i = 0; i < arr_length; i++) buffer[i] = arr[i];
+	delete[] arr;
+	return buffer;
 }
-void Pop_front(int* arr, int &arr_length)
+int* Pop_front(int* arr, int &arr_length)
 {
-	for (int i = 0; i < arr_1_length; i++)
-	{
-		*(arr_1 + i) = *(arr + i + 1);
-	}
+	int* buffer = new int[--arr_length];
+	for (int i = 0; i < arr_length; i++) buffer[i] = arr[i + 1];
+	delete[] arr;
+	return buffer;
 }
-void Erase(int* arr, int &arr_length, int* namber)
+int* Erase(int* arr, int &arr_length, int* namber)
 {
-	for (int i = 0; i < *namber - 1; i++)
-	{
-		*(arr_1 + i) = *(arr + i);
-	}
-
-	for (int i = *namber - 1; i < arr_1_length; i++)
-	{
-		*(arr_1 + i) = *(arr + i + 1);
-	}
-}*/
+	int* buffer = new int[--arr_length];
+	for (int i = 0; i < *namber - 1; i++) buffer[i] = arr[i];
+	for (int i = *namber - 1; i < arr_length; i++) buffer[i] = arr[i + 1];
+	delete[] arr;
+	return buffer;	
+}
