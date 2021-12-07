@@ -4,15 +4,18 @@
 
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
-
+int** allocate(const int rows, const int cols);
 void FillRand(int* arr, const int arr_length);
+void FillRand(int** arr, const int rows, const int cols);
 void Print(int* arr, const int arr_length);
+void Print(int** arr, const int rows, const int cols);
 int* Push_back(int* arr, int &arr_length,  int* element);
 int* Push_front(int* arr, int &arr_length, int* element);
 int* Insert(int* arr,  int &arr_length,  int* namber, int* element);
 int* Pop_back(int* arr, int &arr_length);
 int* Pop_front(int* arr, int &arr_length);
 int* Erase(int* arr, int& arr_length, int* namber);
+void Delete(int** arr, const int rows, const int cols);
 
 int main()
 {
@@ -72,15 +75,43 @@ int main()
 	} while (e != 27);
 	#endif // DYNAMIC_MEMORY_1
 #ifdef DYNAMIC_MEMORY_2
+	int ROWS;
+	int COLS;
+	std::cout << "Enter ROWS "; std::cin >> ROWS; std::cout << std::endl;
+	std::cout << "Enter COLS "; std::cin >> COLS; std::cout << std::endl;
+	int** arr = allocate(ROWS, COLS);
+	FillRand(arr, ROWS, COLS);
+	Print(arr, ROWS, COLS);
+
+	Delete(arr, ROWS, COLS);
 
 #endif // DYNAMIC_MEMORY_2
 
+}
+int** allocate(const int rows, const int cols)
+{
+	int** arr = new int* [rows] {};
+	for (int i = 0; i < rows; i++)
+	{
+		arr[i] = new int[cols] {};
+	}
+	return arr;
 }
 void FillRand(int* arr, const int arr_length)
 {
 	for (int i = 0; i < arr_length; i++)
 	{
 		*(arr + i) = rand() % 100;
+	}
+}
+void FillRand(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand() % 10;
+		}
 	}
 }
 void Print(int* arr, const int arr_length)
@@ -90,6 +121,18 @@ void Print(int* arr, const int arr_length)
 		std::cout << arr[i] << "\t";
 	}
 }
+void Print(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			std::cout << arr[i][j] << "\t";
+		}
+		std::cout << std::endl;
+	}
+}
+
 int* Push_back(int* arr, int &arr_length, int* element)
 {
 	int* buffer = new int[arr_length + 1];
@@ -137,4 +180,12 @@ int* Erase(int* arr, int &arr_length, int* namber)
 	for (int i = *namber - 1; i < arr_length; i++) buffer[i] = arr[i + 1];
 	delete[] arr;
 	return buffer;	
+}
+void Delete(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	delete[] arr;
 }
