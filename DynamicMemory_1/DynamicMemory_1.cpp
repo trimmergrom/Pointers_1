@@ -93,27 +93,22 @@ int main()
 	std::cout << "Push_row_back \n";
 	arr = Push_row_back(arr, ROWS, COLS);
 	Print(arr, ROWS, COLS);
-	std::cout << "\n========================================================\n";
-	
+	std::cout << "\n========================================================\n";	
 	std::cout << "Push_row_front \n";
 	arr = Push_row_front(arr, ROWS, COLS);
-	Print(arr, ROWS, COLS);
-	
+	Print(arr, ROWS, COLS);	
 	std::cout << "\n========================================================\n";
 	std::cout << "Enter the insertion position number "; std::cin >> namber; std::cout << "\n";
 	arr = Insert_row(arr, ROWS, COLS, namber);
 	Print(arr, ROWS, COLS);
-
 	std::cout << "\n========================================================\n";
 	std::cout << "Push_col_back \n";
 	Push_col_back(arr, ROWS, COLS);
 	Print(arr, ROWS, COLS);
-
 	std::cout << "\n========================================================\n";
 	std::cout << "Push_col_front \n";
 	Push_col_front(arr, ROWS, COLS);
 	Print(arr, ROWS, COLS);
-
 	std::cout << "\n========================================================\n";
 	std::cout << "Erase_col \n";
 	std::cout << "Enter the number of the position to be deleted "; std::cin >> namber; std::cout << "\n";
